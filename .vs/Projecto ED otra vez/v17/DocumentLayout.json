@@ -1,10 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kevin\\Downloads\\Projecto ED otra vez\\",
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Downloads\\Projecto-ED-otra-vez\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4630F5D1-12A3-46C1-BA6C-02A3910185D6}|Projecto ED otra vez.vcxproj|C:\\Users\\kevin\\Downloads\\Projecto ED otra vez\\Projecto ED otra vez.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{4630F5D1-12A3-46C1-BA6C-02A3910185D6}|Projecto ED otra vez.vcxproj|C:\\Users\\Usuario\\Downloads\\Projecto-ED-otra-vez\\Projecto ED otra vez.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4630F5D1-12A3-46C1-BA6C-02A3910185D6}|Projecto ED otra vez.vcxproj|solutionrelative:Projecto ED otra vez.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4630F5D1-12A3-46C1-BA6C-02A3910185D6}|Projecto ED otra vez.vcxproj|C:\\Users\\Usuario\\Downloads\\Projecto-ED-otra-vez\\LinkedQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4630F5D1-12A3-46C1-BA6C-02A3910185D6}|Projecto ED otra vez.vcxproj|solutionrelative:LinkedQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,17 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LinkedQueue.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\Projecto-ED-otra-vez\\LinkedQueue.h",
+              "RelativeDocumentMoniker": "LinkedQueue.h",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\Projecto-ED-otra-vez\\LinkedQueue.h",
+              "RelativeToolTip": "LinkedQueue.h",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEEAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-06-16T12:42:20.573Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Projecto ED otra vez.cpp",
-              "DocumentMoniker": "C:\\Users\\kevin\\Downloads\\Projecto ED otra vez\\Projecto ED otra vez.cpp",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\Projecto-ED-otra-vez\\Projecto ED otra vez.cpp",
               "RelativeDocumentMoniker": "Projecto ED otra vez.cpp",
-              "ToolTip": "C:\\Users\\kevin\\Downloads\\Projecto ED otra vez\\Projecto ED otra vez.cpp",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\Projecto-ED-otra-vez\\Projecto ED otra vez.cpp",
               "RelativeToolTip": "Projecto ED otra vez.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-06-14T22:06:24.91Z",
               "EditorCaption": ""

@@ -38,7 +38,7 @@ public:
 		delete front;
 	}
 
-	void Enqueue(E element) {
+	void enqueue(E element) {
 
 		back->next = new Node<E>(element, nullptr);
 
@@ -58,12 +58,12 @@ public:
 
 		Node<E>* temp = front->next;
 		
-		front->next = temp->next
+		front->next = temp->next;
 
 		delete temp;
 
-		if (size == 0) {
-			back = front
+		if (size == 1) {
+			back = front;
 		}
 
 		size--;
@@ -98,13 +98,13 @@ public:
 
 	bool isEmpty() {
 
-		return size == 0
+		return size == 0;
 
 	}
 
 	int getSize() {
 
-		return
+		return size;
 
 	}
 
