@@ -35,6 +35,16 @@ private:
 
 	int* degree;
 
+	//calcula la distancia entre dos nodos
+	float distance(int i, int j) {
+
+		float dx = x[i] - x[j];
+
+		float dy = y[i] - y[j];
+
+		return sqrtf(dx * dx + dy * dy);
+	}
+
 public:
 
 	Graph(int numNodes, int maxNeighbors) {
@@ -52,6 +62,13 @@ public:
 		neighbors = new int*[numNodes];
 
 		weights = new float*[maxNeighbors]();
+
+		for (int i = 0; i < numNodes; i++) {
+
+			neighbors[i] = new int[maxNeighbors]();
+
+			weights[i] = new float[maxNeighbors]();
+		}
 	
 	}
 
@@ -73,6 +90,16 @@ public:
 		delete[] y;
 
 		delete[] degree;
+	}
+
+	int getNumNodes() {
+
+		return numNodes;
+	}
+
+	int getMaxNeighbors() {
+
+		return maxNeighbors;
 	}
 	
 
