@@ -1,10 +1,17 @@
 
 
 #include <iostream>
-#include "LinkedQueue.h"
+#include <cstdlib>
+#include <time.h>
+#include "Graph.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using::cout;
+using::endl;
+
+int main() {
+
+	srand((unsigned)time(nullptr));
+
+	return 0;
 }
 
