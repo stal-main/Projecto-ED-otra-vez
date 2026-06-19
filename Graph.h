@@ -206,5 +206,25 @@ public:
 			}
 		}
 	}
+
+	void print() const {
+
+		for (int i = 0; i < numNodes; i++) {
+
+			cout << "Node" << i << " (" << x[i] << ", " << y[i] << "): ";
+
+			for (int j = 0; j < degree[i]; j++) {
+				
+				cout << neighbors[i][j];
+
+				if (j < degree[i] - 1) {
+					cout << ", ";
+				}
+
+			}
+
+			cout << endl;
+		}
+	}
 };
 
