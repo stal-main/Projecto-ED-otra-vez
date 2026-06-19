@@ -7,8 +7,6 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
-#include "Pair.h"
-#include "LinkedStack.h"
 
 using std::cout;
 using std::endl;
@@ -43,19 +41,6 @@ private:
 		float dy = y[i] - y[j];
 
 		return sqrtf(dx * dx + dy * dy);
-	}
-
-	float findWeight(int u, int v) {
-
-		for (int i = 0; i < degree[u]; i++) {
-
-			if (neighbors[u][i] == v) {
-
-				return weights[u][i];
-			}
-		}
-
-		return -1.0f;
 	}
 
 public:
@@ -174,6 +159,16 @@ public:
 		degree[v]++;
 
 		return true;
+	}
+
+	float findWeight(int u, int v) const {
+
+		for (int i = 0; i < degree[u]; i++) {
+
+			if (neighbors[u][i] == v) return weights[u][i];
+		}
+
+		return -1.0f;
 	}
 
 	void generateRandom(float connectionDist, float width = 120.0f) {
