@@ -6,8 +6,8 @@
 #include "Graph.h"
 #include "GraphAlgorithms.h"
 
-using::cout;
-using::endl;
+using std::cout;
+using std::endl;
 
 const int NUM_NODES = 20;
 
@@ -36,6 +36,8 @@ int main() {
 	cout << "DFS tree starting from node " << startNode << ":" << endl;
 
 	tree->print();
+
+	delete tree;	
 
 	return 0;
 }

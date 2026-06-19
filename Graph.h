@@ -120,7 +120,7 @@ public:
 		return neighbors[i][k];
 	}
 
-	int getWeight(int i, int k) const {
+	float getWeight(int i, int k) const {
 
 		return weights[i][k];
 	}
@@ -171,7 +171,7 @@ public:
 		return -1.0f;
 	}
 
-	void generateRandom(float connectionDist, float width = 120.0f) {
+	void generateRandom(float connectionDist, float width = 1200.0f) {
 
 		float margin = 40.0f;
 
