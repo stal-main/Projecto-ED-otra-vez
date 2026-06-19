@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <time.h>
 #include "Graph.h"
+#include "GraphAlgorithms.h"
 
 using::cout;
 using::endl;
@@ -25,6 +26,16 @@ int main() {
 	cout << "Original graph:" << endl;
 
 	g.print();
+
+	cout << endl;
+
+	int startNode = 0;
+
+	Graph* tree = dfs(g, startNode);
+
+	cout << "DFS tree starting from node " << startNode << ":" << endl;
+
+	tree->print();
 
 	return 0;
 }

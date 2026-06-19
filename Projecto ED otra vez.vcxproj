@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphAlgorithms.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="LinkedStack.h" />
     <ClInclude Include="MinHeap.h" />
