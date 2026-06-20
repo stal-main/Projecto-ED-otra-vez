@@ -55,7 +55,7 @@ int main() {
     }
 
     std::string mensaje = "Hola Mundo";
-    sf::Text textoUI(fuente, mensaje, 22);
+    sf::Text textoUI(fuente, mensaje, 18);
     textoUI.setFillColor(sf::Color::White);
     textoUI.setPosition({ 20.f, 15.f });
 
@@ -66,6 +66,7 @@ int main() {
         }
 
         window.clear();
+        window.draw(textoUI);
         window.display();
     }
 }
