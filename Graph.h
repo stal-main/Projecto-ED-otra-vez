@@ -171,9 +171,9 @@ public:
 		return -1.0f;
 	}
 
-	void generateRandom(float connectionDist, float width = 1200.0f) {
+	void generateRandom(float connectionDist, float width = 1200.0f, float height = 1200.0f) {
 
-		float margin = 40.0f;
+		float margin = 40.0f + 15.0f;
 
 		for (int i = 0; i < numNodes; i++) {
 
@@ -184,7 +184,7 @@ public:
 
 			x[i] = margin + (float)rand() / RAND_MAX * (width - 2 * margin);
 
-			y[i] = margin + (float)rand() / RAND_MAX * (width - 2 * margin);
+			y[i] = margin + (float)rand() / RAND_MAX * (height - 2 * margin);
 		}
 
 		for (int i = 0; i < numNodes; i++) {
