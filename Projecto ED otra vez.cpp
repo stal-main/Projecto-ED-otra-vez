@@ -37,7 +37,7 @@ int main() {
         cin >> maxVecinos;
     }
 
-    cout << "Ingrese la Distancia de conexión: ";
+    cout << "Ingrese la distancia de conexión: ";
     if (!(cin >> distCon) || distCon <= 0.f) {
         cout << "Número inválido. Ingrese un número entero positivo: ";
         cin.clear();
@@ -46,7 +46,7 @@ int main() {
     }
 
     Graph g(numNodos, maxVecinos);
-    g.generateRandom(distCon, 1500);
+    g.generateRandom(distCon, 1500, 800);
 
     sf::RenderWindow window(sf::VideoMode({ 1500, 800 }), "Proyecto ED");
     sf::Font fuente;
@@ -68,12 +68,26 @@ int main() {
         window.clear();
 
         for (int i = 0; i < g.getNumNodes(); i++) {
-            sf::CircleShape circle(15);
+            sf::CircleShape circle(12);
             circle.setFillColor(sf::Color::White);
             circle.setOutlineColor(sf::Color::Green);
-            circle.setOrigin({ 15, 15 });
-            circle.setPosition({ g.getX(i), g.getY(i) });
+            circle.setOutlineThickness(1.5f);
+            circle.setOrigin({ 12, 12 });
+            circle.setPosition({ g.getX(i), g.getY(i)});
             window.draw(circle);
+        }
+
+        for (int i = 0; i < g.getNumNodes(); i++) {
+            for (int j = 0; j < g.getDegree(i); j++) {
+                int vecino = g.getNeighbor(i, j);
+                if (vecino > i) {
+                    sf::Vertex line[] = {
+                        sf::Vertex{sf::Vector2f(g.getX(i),  g.getY(i)),  sf::Color(100, 100, 120)},
+                        sf::Vertex{sf::Vector2f(g.getX(vecino), g.getY(vecino)), sf::Color(100, 100, 120)}
+                    };
+                    window.draw(line, 2, sf::PrimitiveType::Lines);
+                }
+            }
         }
 
         window.draw(textoUI);
