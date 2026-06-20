@@ -38,8 +38,8 @@ int main() {
 		cin >> distanciaCone;
     }
 
-    sf::RenderWindow window(sf::VideoMode({ 1200, 700 }), "Proyecto ED");
-    sf::CircleShape shape(100.f);
+    sf::RenderWindow window(sf::VideoMode({ 1500, 800 }), "Proyecto ED");
+    sf::CircleShape shape(15.f);
     shape.setFillColor(sf::Color::Green);
 
     while (window.isOpen()){
