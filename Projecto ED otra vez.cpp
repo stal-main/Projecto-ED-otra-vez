@@ -31,7 +31,6 @@ int main() {
     }
 
     cout << "Ingrese la Distancia de conexión: ";
-	cin >> distanciaCone;
     if (!(cin >> distanciaCone) || distanciaCone <= 0.f) { 
         cout << "Número inválido. Ingrese un número entero positivo: ";
         cin.clear();
