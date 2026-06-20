@@ -1,8 +1,13 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+#include "Graph.h"
+#include "GraphAlgorithms.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({ 200, 200 }), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode({ 1200, 700 }), "Proyecto ED");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
