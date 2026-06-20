@@ -8,11 +8,18 @@
 using std::cin;
 using std::cout;
 
+void centerText(sf::Text& t, float cx) {
+    sf::FloatRect b = t.getLocalBounds();
+    t.setOrigin({ b.position.x + b.size.x / 2.f, b.position.y + b.size.y / 2.f });
+    t.setPosition({ cx, t.getPosition().y });
+}
+
 int main() {
     setlocale(LC_ALL, "es_ES.UTF-8");
+    srand(time(0));
     int numNodos;
     int maxVecinos;
-    float distanciaCone;
+    float distCon;
 
     cout << "Ingrese el numero de nodos: ";
     while (!(cin >> numNodos) || numNodos <= 0) {
@@ -31,16 +38,26 @@ int main() {
     }
 
     cout << "Ingrese la Distancia de conexión: ";
-    if (!(cin >> distanciaCone) || distanciaCone <= 0.f) { 
+    if (!(cin >> distCon) || distCon <= 0.f) {
         cout << "Número inválido. Ingrese un número entero positivo: ";
         cin.clear();
         cin.ignore(10000, '\n');
-		cin >> distanciaCone;
+		cin >> distCon;
     }
 
+    Graph g(numNodos, maxVecinos);
+    g.generateRandom(distCon, 1500);
+
     sf::RenderWindow window(sf::VideoMode({ 1500, 800 }), "Proyecto ED");
-    sf::CircleShape shape(15.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::Font fuente;
+    if (!fuente.openFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
+        return -1;
+    }
+
+    std::string mensaje = "Hola Mundo";
+    sf::Text textoUI(fuente, mensaje, 22);
+    textoUI.setFillColor(sf::Color::White);
+    textoUI.setPosition({ 20.f, 15.f });
 
     while (window.isOpen()){
         while (const std::optional event = window.pollEvent()){
@@ -49,7 +66,6 @@ int main() {
         }
 
         window.clear();
-        window.draw(shape);
         window.display();
     }
 }
