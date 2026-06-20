@@ -15,7 +15,6 @@ int main() {
     float distanciaCone;
 
     cout << "Ingrese el numero de nodos: ";
-	cin >> numNodos;
     while (!(cin >> numNodos) || numNodos <= 0) {
 		cout << "Número inválido. ingrese un número entero positivo: ";
         cin.clear();
@@ -24,7 +23,6 @@ int main() {
     }
 
     cout << "Ingrese el mximo de vecinos por nodo: ";
-	cin >> maxVecinos;
     if (!(cin >> maxVecinos) || maxVecinos <= 0) {
         cout << "Número inválido. Ingrese un número entero positivo: ";
         cin.clear();
