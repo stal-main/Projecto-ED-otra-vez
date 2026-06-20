@@ -66,6 +66,16 @@ int main() {
         }
 
         window.clear();
+
+        for (int i = 0; i < g.getNumNodes(); i++) {
+            sf::CircleShape circle(15);
+            circle.setFillColor(sf::Color::White);
+            circle.setOutlineColor(sf::Color::Green);
+            circle.setOrigin({ 15, 15 });
+            circle.setPosition({ g.getX(i), g.getY(i) });
+            window.draw(circle);
+        }
+
         window.draw(textoUI);
         window.display();
     }
