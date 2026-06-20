@@ -5,16 +5,48 @@
 #include "Graph.h"
 #include "GraphAlgorithms.h"
 
-int main()
-{
+using std::cin;
+using std::cout;
+
+int main() {
+    setlocale(LC_ALL, "es_ES.UTF-8");
+    int numNodos;
+    int maxVecinos;
+    float distanciaCone;
+
+    cout << "Ingrese el numero de nodos: ";
+	cin >> numNodos;
+    while (!(cin >> numNodos) || numNodos <= 0) {
+		cout << "Número inválido. ingrese un número entero positivo: ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+		cin >> numNodos;
+    }
+
+    cout << "Ingrese el mximo de vecinos por nodo: ";
+	cin >> maxVecinos;
+    if (!(cin >> maxVecinos) || maxVecinos <= 0) {
+        cout << "Número inválido. Ingrese un número entero positivo: ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cin >> maxVecinos;
+    }
+
+    cout << "Ingrese la Distancia de conexión: ";
+	cin >> distanciaCone;
+    if (!(cin >> distanciaCone) || distanciaCone <= 0.f) { 
+        cout << "Número inválido. Ingrese un número entero positivo: ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+		cin >> distanciaCone;
+    }
+
     sf::RenderWindow window(sf::VideoMode({ 1200, 700 }), "Proyecto ED");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
-    while (window.isOpen())
-    {
-        while (const std::optional event = window.pollEvent())
-        {
+    while (window.isOpen()){
+        while (const std::optional event = window.pollEvent()){
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
