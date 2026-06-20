@@ -2,16 +2,28 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
+#include <string>
 #include "Graph.h"
 #include "GraphAlgorithms.h"
 
 using std::cin;
 using std::cout;
+using std::string;
 
 void centerText(sf::Text& t, float cx) {
     sf::FloatRect b = t.getLocalBounds();
     t.setOrigin({ b.position.x + b.size.x / 2.f, b.position.y + b.size.y / 2.f });
     t.setPosition({ cx, t.getPosition().y });
+}
+
+string menu() {
+	string res = "Elija el algoritmo que desea usar:\n";
+	res += "1. Busqueda en profundidad (DFS)\n";
+	res += "2. Busqueda en anchura (BFS)\n";
+	res += "3. Algoritmo de Prim\n";
+	res += "4. Algoritmo de Kruskal\n";
+	res += "5. Algoritmo de Dijkstra\n";
+    return res;
 }
 
 int main() {
@@ -20,6 +32,7 @@ int main() {
     int numNodos;
     int maxVecinos;
     float distCon;
+    int algoritmo;
 
     cout << "Ingrese el numero de nodos: ";
     while (!(cin >> numNodos) || numNodos <= 0) {
@@ -43,6 +56,14 @@ int main() {
         cin.clear();
         cin.ignore(10000, '\n');
 		cin >> distCon;
+    }
+
+    cout << menu();
+    if (!(cin >> algoritmo) || algoritmo <= 0.f) {
+        cout << "Número inválido. Ingrese un número entero positivo: ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cin >> distCon;
     }
 
     Graph g(numNodos, maxVecinos);
