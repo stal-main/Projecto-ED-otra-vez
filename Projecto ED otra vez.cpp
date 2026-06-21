@@ -16,6 +16,16 @@ void centerText(sf::Text& t, float cx) {
     t.setPosition({ cx, t.getPosition().y });
 }
 
+int nodoTocado(const Graph& g, float mx, float my) {
+    for (int i = 0; i < g.getNumNodes(); i++) {
+        float distanciax = g.getX(i) - mx;
+        float distanciay = g.getY(i) - my;
+        if (distanciax * distanciax + distanciay * distanciay <= 12 * 12)
+            return i;
+    }
+    return -1;
+}
+
 string menu() {
 	string res = "Elija el algoritmo que desea usar:\n";
 	res += "1. Busqueda en profundidad (DFS)\n";
@@ -118,10 +128,15 @@ int main() {
             if (event->is<sf::Event::Closed>())
                 window.close();
 
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-            {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
                 window.clear();
                 g.generateRandom(distCon, 1500, 800);
+            }
+
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
+				int clicX = sf::Mouse::getPosition(window).x;
+				int clicY = sf::Mouse::getPosition(window).y;
+				aplicarAlgoritmo(algoritmo, g, nodoTocado(g, clicX, clicY));
             }
         }
 
