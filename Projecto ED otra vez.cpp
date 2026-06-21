@@ -114,6 +114,7 @@ int main() {
     g.generateRandom(distCon, 1500, 800);
 
     sf::RenderWindow window(sf::VideoMode({ 1500, 800 }), "Proyecto ED");
+    window.setFramerateLimit(60);
     sf::Font fuente;
     if (!fuente.openFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
         return -1;
@@ -141,32 +142,13 @@ int main() {
 				int clicY = sf::Mouse::getPosition(window).y;
                 nodoSeleccionado = nodoTocado(g, clicX, clicY);
                 if (nodoSeleccionado != -1){
+                    delete arbol;
 					arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
                 }
             }
         }
 
         window.clear();
-
-        for (int i = 0; i < g.getNumNodes(); i++) {
-            sf::CircleShape circle(12);
-			if (i == nodoSeleccionado) {
-                circle.setFillColor(sf::Color::Red);
-                circle.setOutlineColor(sf::Color::Red);
-                circle.setOutlineThickness(1.5f);
-                circle.setOrigin({ 12, 12 });
-                circle.setPosition({ g.getX(i), g.getY(i) });
-                window.draw(circle);
-			}
-            else {
-                circle.setFillColor(sf::Color::White);
-                circle.setOutlineColor(sf::Color::Green);
-                circle.setOutlineThickness(1.5f);
-                circle.setOrigin({ 12, 12 });
-                circle.setPosition({ g.getX(i), g.getY(i) });
-                window.draw(circle);
-            }
-        }
 
         for (int i = 0; i < g.getNumNodes(); i++) {
             for (int j = 0; j < g.getDegree(i); j++) {
@@ -193,6 +175,26 @@ int main() {
                         window.draw(line, 2, sf::PrimitiveType::Lines);
                     }
                 }
+            }
+        }
+
+        for (int i = 0; i < g.getNumNodes(); i++) {
+            sf::CircleShape circle(12);
+			if (i == nodoSeleccionado) {
+                circle.setFillColor(sf::Color::Red);
+                circle.setOutlineColor(sf::Color::Red);
+                circle.setOutlineThickness(1.5f);
+                circle.setOrigin({ 12, 12 });
+                circle.setPosition({ g.getX(i), g.getY(i) });
+                window.draw(circle);
+			}
+            else {
+                circle.setFillColor(sf::Color::White);
+                circle.setOutlineColor(sf::Color::Green);
+                circle.setOutlineThickness(1.5f);
+                circle.setOrigin({ 12, 12 });
+                circle.setPosition({ g.getX(i), g.getY(i) });
+                window.draw(circle);
             }
         }
 
