@@ -123,6 +123,8 @@ int main() {
     textoUI.setFillColor(sf::Color::White);
     textoUI.setPosition({ 20.f, 15.f });
 
+    int nodoSeleccionado = -1;
+
     while (window.isOpen()){
         while (const std::optional event = window.pollEvent()){
             if (event->is<sf::Event::Closed>())
@@ -136,10 +138,7 @@ int main() {
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
 				int clicX = sf::Mouse::getPosition(window).x;
 				int clicY = sf::Mouse::getPosition(window).y;
-				int nodo = nodoTocado(g, clicX, clicY);
-				sf::CircleShape circle(nodo);
-				circle.setFillColor(sf::Color::Red);
-				window.draw(circle);
+                nodoSeleccionado = nodoTocado(g, clicX, clicY);
             }
         }
 
@@ -147,12 +146,22 @@ int main() {
 
         for (int i = 0; i < g.getNumNodes(); i++) {
             sf::CircleShape circle(12);
-            circle.setFillColor(sf::Color::White);
-            circle.setOutlineColor(sf::Color::Green);
-            circle.setOutlineThickness(1.5f);
-            circle.setOrigin({ 12, 12 });
-            circle.setPosition({ g.getX(i), g.getY(i)});
-            window.draw(circle);
+			if (i == nodoSeleccionado) {
+                circle.setFillColor(sf::Color::Red);
+                circle.setOutlineColor(sf::Color::Red);
+                circle.setOutlineThickness(1.5f);
+                circle.setOrigin({ 12, 12 });
+                circle.setPosition({ g.getX(i), g.getY(i) });
+                window.draw(circle);
+			}
+            else {
+                circle.setFillColor(sf::Color::White);
+                circle.setOutlineColor(sf::Color::Green);
+                circle.setOutlineThickness(1.5f);
+                circle.setOrigin({ 12, 12 });
+                circle.setPosition({ g.getX(i), g.getY(i) });
+                window.draw(circle);
+            }
         }
 
         for (int i = 0; i < g.getNumNodes(); i++) {
