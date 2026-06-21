@@ -43,6 +43,23 @@ string nombreAlgoritmo(int alg) {
     }
 }
 
+Graph* aplicarAlgoritmo(int alg, const Graph& g, int nodoInicio) {
+    switch (alg) {
+    case 1: 
+        return dfs(g, nodoInicio);
+    case 2: 
+        // por terminar bfs;
+    case 3:
+        // por terminar prim;
+    case 4: 
+        // por terminar kruskal;
+    case 5: 
+        // por terminar dijkstra;
+    default:
+		return nullptr;
+    }
+}
+
 int main() {
     setlocale(LC_ALL, "es_ES.UTF-8");
     srand(time(0));
