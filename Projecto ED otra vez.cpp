@@ -26,6 +26,23 @@ string menu() {
     return res;
 }
 
+string nombreAlgoritmo(int alg) {
+    switch (alg) {
+    case 1:
+        return "Busqueda en profundidad (DFS)";
+    case 2:
+        return "Busqueda en anchura (BFS)";
+    case 3:
+        return "Algoritmo de Prim";
+    case 4:
+        return "Algoritmo de Kruskal";
+    case 5:
+        return "Algoritmo de Dijkstra";
+    default:
+        return "Error, elija un numero entre 1 y 5";
+    }
+}
+
 int main() {
     setlocale(LC_ALL, "es_ES.UTF-8");
     srand(time(0));
@@ -42,7 +59,7 @@ int main() {
 		cin >> numNodos;
     }
 
-    cout << "Ingrese el mximo de vecinos por nodo: ";
+    cout << "Ingrese el máximo de vecinos por nodo: ";
     if (!(cin >> maxVecinos) || maxVecinos <= 0) {
         cout << "Número inválido. Ingrese un número entero positivo: ";
         cin.clear();
@@ -75,8 +92,7 @@ int main() {
         return -1;
     }
 
-    std::string mensaje = "Hola Mundo";
-    sf::Text textoUI(fuente, mensaje, 18);
+    sf::Text textoUI(fuente, nombreAlgoritmo(algoritmo), 18);
     textoUI.setFillColor(sf::Color::White);
     textoUI.setPosition({ 20.f, 15.f });
 
