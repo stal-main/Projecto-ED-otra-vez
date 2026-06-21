@@ -94,7 +94,7 @@ int main() {
         cin >> maxVecinos;
     }
 
-    cout << "Ingrese la distancia de conexión: ";
+    cout << "Ingrese la distancia de conexión (recomendado mayor a 100): ";
     if (!(cin >> distCon) || distCon <= 0.f) {
         cout << "Número inválido. Ingrese un número entero positivo: ";
         cin.clear();
@@ -139,6 +139,9 @@ int main() {
 				int clicX = sf::Mouse::getPosition(window).x;
 				int clicY = sf::Mouse::getPosition(window).y;
                 nodoSeleccionado = nodoTocado(g, clicX, clicY);
+                if (nodoSeleccionado != -1){
+					Graph* arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
+                }
             }
         }
 
