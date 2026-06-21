@@ -136,7 +136,10 @@ int main() {
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
 				int clicX = sf::Mouse::getPosition(window).x;
 				int clicY = sf::Mouse::getPosition(window).y;
-				aplicarAlgoritmo(algoritmo, g, nodoTocado(g, clicX, clicY));
+				int nodo = nodoTocado(g, clicX, clicY);
+				sf::CircleShape circle(nodo);
+				circle.setFillColor(sf::Color::Red);
+				window.draw(circle);
             }
         }
 
