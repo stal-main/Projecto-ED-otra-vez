@@ -181,15 +181,17 @@ int main() {
             }
         }
 
-        for (int i = 0; i < arbol->getNumNodes(); i++) {
-            for (int j = 0; j < arbol->getDegree(i); j++) {
-                int vecino = arbol->getNeighbor(i, j);
-                if (vecino > i) {
-                    sf::Vertex line[] = {
-                        sf::Vertex{sf::Vector2f(arbol->getX(i),  arbol->getY(i)),  sf::Color::Cyan},
-                        sf::Vertex{sf::Vector2f(arbol->getX(vecino), arbol->getY(vecino)), sf::Color::Cyan}
-                    };
-                    window.draw(line, 2, sf::PrimitiveType::Lines);
+        if (arbol != nullptr) {
+            for (int i = 0; i < arbol->getNumNodes(); i++) {
+                for (int j = 0; j < arbol->getDegree(i); j++) {
+                    int vecino = arbol->getNeighbor(i, j);
+                    if (vecino > i) {
+                        sf::Vertex line[] = {
+                            sf::Vertex{sf::Vector2f(arbol->getX(i),  arbol->getY(i)),  sf::Color::Cyan},
+                            sf::Vertex{sf::Vector2f(arbol->getX(vecino), arbol->getY(vecino)), sf::Color::Cyan}
+                        };
+                        window.draw(line, 2, sf::PrimitiveType::Lines);
+                    }
                 }
             }
         }
