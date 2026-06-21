@@ -117,6 +117,12 @@ int main() {
         while (const std::optional event = window.pollEvent()){
             if (event->is<sf::Event::Closed>())
                 window.close();
+
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+            {
+                window.clear();
+                g.generateRandom(distCon, 1500, 800);
+            }
         }
 
         window.clear();
