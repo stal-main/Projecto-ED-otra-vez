@@ -124,6 +124,7 @@ int main() {
     textoUI.setPosition({ 20.f, 15.f });
 
     int nodoSeleccionado = -1;
+	Graph* arbol = nullptr;
 
     while (window.isOpen()){
         while (const std::optional event = window.pollEvent()){
@@ -140,7 +141,7 @@ int main() {
 				int clicY = sf::Mouse::getPosition(window).y;
                 nodoSeleccionado = nodoTocado(g, clicX, clicY);
                 if (nodoSeleccionado != -1){
-					Graph* arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
+					arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
                 }
             }
         }
@@ -180,7 +181,21 @@ int main() {
             }
         }
 
+        for (int i = 0; i < arbol->getNumNodes(); i++) {
+            for (int j = 0; j < arbol->getDegree(i); j++) {
+                int vecino = arbol->getNeighbor(i, j);
+                if (vecino > i) {
+                    sf::Vertex line[] = {
+                        sf::Vertex{sf::Vector2f(arbol->getX(i),  arbol->getY(i)),  sf::Color::Cyan},
+                        sf::Vertex{sf::Vector2f(arbol->getX(vecino), arbol->getY(vecino)), sf::Color::Cyan}
+                    };
+                    window.draw(line, 2, sf::PrimitiveType::Lines);
+                }
+            }
+        }
+
         window.draw(textoUI);
         window.display();
     }
+	delete arbol;
 }
