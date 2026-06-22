@@ -134,6 +134,8 @@ int main() {
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
                 window.clear();
+                delete arbol;
+				arbol = nullptr;
                 g.generateRandom(distCon, 1500, 800);
             }
 
