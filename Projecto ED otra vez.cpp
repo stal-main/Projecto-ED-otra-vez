@@ -60,8 +60,7 @@ Graph* aplicarAlgoritmo(int alg, const Graph& g, int nodoInicio) {
     case 2: 
         return bfs(g, nodoInicio);
     case 3:
-        // por terminar prim;
-		return nullptr;
+        return prim(g, nodoInicio);
     case 4: 
         // por terminar kruskal;
 		return nullptr;
