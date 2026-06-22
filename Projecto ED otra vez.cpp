@@ -58,7 +58,7 @@ Graph* aplicarAlgoritmo(int alg, const Graph& g, int nodoInicio) {
     case 1: 
         return dfs(g, nodoInicio);
     case 2: 
-        // por terminar bfs;
+        return bfs(g, nodoInicio);
     case 3:
         // por terminar prim;
     case 4: 
