@@ -47,9 +47,9 @@ public:
 
 	Graph(int n, int maxN) {
 
-		this->numNodes = numNodes;
+		this->numNodes = n;
 
-		this->maxNeighbors = maxNeighbors;
+		this->maxNeighbors = maxN;
 
 		x = new float[numNodes]();
 
