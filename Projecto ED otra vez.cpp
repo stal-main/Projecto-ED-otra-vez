@@ -9,6 +9,7 @@
 using std::cin;
 using std::cout;
 using std::string;
+using std::endl;
 
 void centerText(sf::Text& t, float cx) {
     sf::FloatRect b = t.getLocalBounds();
@@ -78,6 +79,11 @@ int main() {
     float distCon;
     int algoritmo;
 
+	cout << "Instrucciones de uso:\n";
+    cout << "1. Clic izquierdo para seleccinar un nodo\n";
+	cout << "2. Clic derecho para seleccionar el nodo destino (solo para Dijkstra)\n";
+	cout << "3. Presione R para generar un nuevo grafo\n";
+    cout << endl;
     cout << "Ingrese el numero de nodos: ";
     while (!(cin >> numNodos) || numNodos <= 0) {
 		cout << "Número inválido. ingrese un número entero positivo: ";
@@ -125,6 +131,7 @@ int main() {
     textoUI.setPosition({ 20.f, 15.f });
 
     int nodoSeleccionado = -1;
+	int nodoDestino = -1;
 	Graph* arbol = nullptr;
 
     while (window.isOpen()){
@@ -137,6 +144,7 @@ int main() {
                     delete arbol;
                     arbol = nullptr;
                     nodoSeleccionado = -1;
+					nodoDestino = -1;
                     g.generateRandom(distCon, 1500, 800);
 				}
             }
@@ -155,7 +163,24 @@ int main() {
 
                         delete arbol;
 
-                        arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
+						if (algoritmo != 5)
+                            arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
+						else if (nodoDestino != -1)
+							arbol = dijkstra(g, nodoSeleccionado, nodoDestino);
+                    }
+                }
+            }
+
+            if (algoritmo == 5 && sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
+                int clicX = sf::Mouse::getPosition(window).x;
+                int clicY = sf::Mouse::getPosition(window).y;
+                int tocado = nodoTocado(g, clicX, clicY);
+                if (tocado != -1) {
+                    nodoDestino = tocado;
+                    delete arbol;
+                    arbol = nullptr;
+                    if (nodoSeleccionado != -1) {
+                        arbol = dijkstra(g, nodoSeleccionado, nodoDestino);
                     }
                 }
             }
@@ -200,6 +225,14 @@ int main() {
                 circle.setOrigin({ 12, 12 });
                 circle.setPosition({ g.getX(i), g.getY(i) });
                 window.draw(circle);
+			}
+			else if (i == nodoDestino) {
+				circle.setFillColor(sf::Color::Blue);
+				circle.setOutlineColor(sf::Color::Blue);
+				circle.setOutlineThickness(1.5f);
+				circle.setOrigin({ 12, 12 });
+				circle.setPosition({ g.getX(i), g.getY(i) });
+				window.draw(circle);
 			}
             else {
                 circle.setFillColor(sf::Color::White);
