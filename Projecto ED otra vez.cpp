@@ -11,6 +11,11 @@ using std::cout;
 using std::string;
 using std::endl;
 
+//Programa principal, contiene la interfaz grafica y el menu de seleccion de algoritmos
+//funcionalidades: seleccion de nodo inicial y nodo destino (para Dijkstra), seleccion de algoritmo, 
+//generacion de nuevo grafo, visualizacion del grafo y del arbol generado por el algoritmo seleccionado
+//Hecha por Julián Rodríguez y Kevin Solano
+
 void centerText(sf::Text& t, float cx) {
     sf::FloatRect b = t.getLocalBounds();
     t.setOrigin({ b.position.x + b.size.x / 2.f, b.position.y + b.size.y / 2.f });
