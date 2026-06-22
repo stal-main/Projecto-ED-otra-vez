@@ -62,11 +62,9 @@ Graph* aplicarAlgoritmo(int alg, const Graph& g, int nodoInicio) {
     case 3:
         return prim(g, nodoInicio);
     case 4: 
-        // por terminar kruskal;
-		return nullptr;
+		return kruskal(g);
     case 5: 
-        // por terminar dijkstra;
-		return nullptr;
+		return dijkstra(g, nodoInicio, -1);
     default:
 		return nullptr;
     }
