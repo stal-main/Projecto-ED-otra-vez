@@ -45,7 +45,7 @@ private:
 
 public:
 
-	Graph(int numNodes, int maxNeighbors) {
+	Graph(int n, int maxN) {
 
 		this->numNodes = numNodes;
 

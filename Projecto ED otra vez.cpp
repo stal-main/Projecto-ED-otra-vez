@@ -143,13 +143,22 @@ int main() {
 				}
             }
 
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
-				int clicX = sf::Mouse::getPosition(window).x;
-				int clicY = sf::Mouse::getPosition(window).y;
-                nodoSeleccionado = nodoTocado(g, clicX, clicY);
-                if (nodoSeleccionado != -1){
-                    delete arbol;
-					arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
+            if (const auto* mouseEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
+
+                if (mouseEvent->button == sf::Mouse::Button::Left) {
+
+                    int clicX = mouseEvent->position.x;
+
+                    int clicY = mouseEvent->position.y;
+
+                    nodoSeleccionado = nodoTocado(g, clicX, clicY);
+
+                    if (nodoSeleccionado != -1) {
+
+                        delete arbol;
+
+                        arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
+                    }
                 }
             }
         }

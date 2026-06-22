@@ -160,9 +160,9 @@ Graph* prim(const Graph& g, int startNode) {
 
 				if (!inTree[neighbor]) {
 
-					float weight = g.findWeight(node, neighbor);
+					float edgeWeight = g.findWeight(node, neighbor);
 
-					heap.insert(Pair<float, Pair<int, int>>(weight, Pair<int, int>(neighbor, node)));
+					heap.insert(Pair<float, Pair<int, int>>(edgeWeight, Pair<int, int>(neighbor, node)));
 				}
 			}
 		}
