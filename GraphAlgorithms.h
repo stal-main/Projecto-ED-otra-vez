@@ -135,7 +135,7 @@ Graph* prim(const Graph& g, int startNode) {
 
 		float weight = g.findWeight(startNode, neighbor);
 
-		heap.insert(Pair<float, Pair<int, int>>(weight, Pair<int, int>(startNode, neighbor)));
+		heap.insert(Pair<float, Pair<int, int>>(weight, Pair<int, int>(neighbor, startNode)));
 	}
 
 	while (heap.getSize() > 0) {
@@ -162,7 +162,7 @@ Graph* prim(const Graph& g, int startNode) {
 
 					float weight = g.findWeight(node, neighbor);
 
-					heap.insert(Pair<float, Pair<int, int>>(weight, Pair<int, int>(node, neighbor)));
+					heap.insert(Pair<float, Pair<int, int>>(weight, Pair<int, int>(neighbor, node)));
 				}
 			}
 		}
