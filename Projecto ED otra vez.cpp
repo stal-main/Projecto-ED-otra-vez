@@ -61,10 +61,13 @@ Graph* aplicarAlgoritmo(int alg, const Graph& g, int nodoInicio) {
         return bfs(g, nodoInicio);
     case 3:
         // por terminar prim;
+		return nullptr;
     case 4: 
         // por terminar kruskal;
+		return nullptr;
     case 5: 
         // por terminar dijkstra;
+		return nullptr;
     default:
 		return nullptr;
     }
@@ -107,7 +110,7 @@ int main() {
         cout << "Número inválido. Ingrese un número entero positivo: ";
         cin.clear();
         cin.ignore(10000, '\n');
-        cin >> distCon;
+        cin >> algoritmo;
     }
 
     Graph g(numNodos, maxVecinos);
@@ -128,15 +131,17 @@ int main() {
 	Graph* arbol = nullptr;
 
     while (window.isOpen()){
-        while (const std::optional event = window.pollEvent()){
+        while (const std::optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>())
                 window.close();
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
-                window.clear();
-                delete arbol;
-				arbol = nullptr;
-                g.generateRandom(distCon, 1500, 800);
+            
+            if (const auto* keyEvent = event->getIf<sf::Event::KeyPressed>()) {
+                if (keyEvent->code == sf::Keyboard::Key::R) {
+                    delete arbol;
+                    arbol = nullptr;
+                    nodoSeleccionado = -1;
+                    g.generateRandom(distCon, 1500, 800);
+				}
             }
 
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){

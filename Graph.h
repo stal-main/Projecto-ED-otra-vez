@@ -34,7 +34,7 @@ private:
 	int* degree;
 
 	//calcula la distancia entre dos nodos
-	float distance(int i, int j) {
+	float distance(int i, int j) const {
 
 		float dx = x[i] - x[j];
 
