@@ -206,7 +206,7 @@ public:
 
 		for (int i = 0; i < numNodes; i++) {
 
-			cout << "Node" << i << " (" << x[i] << ", " << y[i] << "): ";
+			cout << "Nodo" << i << " (" << x[i] << ", " << y[i] << "): ";
 
 			for (int j = 0; j < degree[i]; j++) {
 				
