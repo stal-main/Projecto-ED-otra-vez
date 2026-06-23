@@ -1,5 +1,12 @@
 #pragma once
 
+// Archivo: GraphAlgorithms.h
+//Implementación de los algoritmos de búsqueda y árbol de
+//expansión sobre grafos.
+//Funcionalidades: DFS (pila), BFS (cola), Prim (MinHeap), Kruskal (Union-Find
+//+ MinHeap), Dijkstra (MinHeap). Cada función recibe un Graph y retorna un
+//nuevo Graph* con el resultado, el llamador es responsable de eliminarlo.
+
 #include "Graph.h"
 #include "LinkedStack.h"
 #include "LinkedQueue.h"
@@ -242,7 +249,7 @@ Graph* dijkstra(const Graph& g, int source, int target) {
 	bool* visited = new bool[n]();
 
 	for (int i = 0; i < n; i++) {
-		dist[i] = 2000;
+		dist[i] = 1000000000;
 		prev[i] = -1;
 	}
 	dist[source] = 0;
@@ -254,7 +261,7 @@ Graph* dijkstra(const Graph& g, int source, int target) {
 		int src = current.value;
 		float distSrc = current.key;
 		if (visited[src]) {
-			continue;
+			visited[src] = true;
 		}
 		visited[src] = true;
 		if (src == target) {

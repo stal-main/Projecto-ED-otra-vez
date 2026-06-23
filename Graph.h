@@ -1,7 +1,10 @@
 #pragma once
 
-//Clase grafo
-// wiwiwiwiwiwiwiwiwi
+// Archivo: Graph.h
+//Clase que representa un grafo no dirigido y etiquetado.
+//Funcionalidades: almacenamiento de nodos con posiciones 2D, aristas con
+//pesos (distancia geométrica), generación aleatoria del grafo, y
+//acceso a vecinos y pesos mediante listas de adyacencia.
 //Hecha por Kevin Solano
 
 #include <iostream>

@@ -70,7 +70,7 @@ Graph* aplicarAlgoritmo(int alg, const Graph& g, int nodoInicio) {
     case 4: 
 		return kruskal(g);
     case 5: 
-		return dijkstra(g, nodoInicio, -1);
+        return nullptr;
     default:
 		return nullptr;
     }
@@ -121,10 +121,21 @@ int main() {
         cin >> algoritmo;
     }
 
-    Graph g(numNodos, maxVecinos);
-    g.generateRandom(distCon, 1500, 800);
+    int anchoVentana;
+    int altoVentana;
+    cout << "Ingrese el ancho de la ventana: ";
+    if (!(cin >> anchoVentana) || anchoVentana <= 0) {
+        anchoVentana = 1500;
+    }
+    cout << "Ingrese el alto de la ventana: ";
+    if (!(cin >> altoVentana) || altoVentana <= 0) {
+        altoVentana = 800;
+    }
 
-    sf::RenderWindow window(sf::VideoMode({ 1500, 800 }), "Proyecto ED");
+    Graph g(numNodos, maxVecinos);
+    g.generateRandom(distCon, (float)anchoVentana, (float)altoVentana);
+
+    sf::RenderWindow window(sf::VideoMode({ (unsigned int)anchoVentana, (unsigned int)altoVentana }), "Proyecto ED");
     window.setFramerateLimit(60);
     sf::Font fuente;
     if (!fuente.openFromFile("C:\\Windows\\Fonts\\arial.ttf")) {
@@ -137,21 +148,21 @@ int main() {
 
     int nodoSeleccionado = -1;
 	int nodoDestino = -1;
-	Graph* arbol = nullptr;
+    Graph* arbol = (algoritmo == 4) ? kruskal(g) : nullptr;
 
-    while (window.isOpen()){
+    while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>())
                 window.close();
-            
+
             if (const auto* keyEvent = event->getIf<sf::Event::KeyPressed>()) {
                 if (keyEvent->code == sf::Keyboard::Key::R) {
                     delete arbol;
-                    arbol = nullptr;
                     nodoSeleccionado = -1;
-					nodoDestino = -1;
-                    g.generateRandom(distCon, 1500, 800);
-				}
+                    nodoDestino = -1;
+                    g.generateRandom(distCon, (float)anchoVentana, (float)altoVentana);
+                    arbol = (algoritmo == 4) ? kruskal(g) : nullptr;
+                }
             }
 
             if (const auto* mouseEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
@@ -168,24 +179,24 @@ int main() {
 
                         delete arbol;
 
-						if (algoritmo != 5)
+                        if (algoritmo != 5)
                             arbol = aplicarAlgoritmo(algoritmo, g, nodoSeleccionado);
-						else if (nodoDestino != -1)
-							arbol = dijkstra(g, nodoSeleccionado, nodoDestino);
+                        else if (nodoDestino != -1)
+                            arbol = dijkstra(g, nodoSeleccionado, nodoDestino);
                     }
                 }
-            }
 
-            if (algoritmo == 5 && sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
-                int clicX = sf::Mouse::getPosition(window).x;
-                int clicY = sf::Mouse::getPosition(window).y;
-                int tocado = nodoTocado(g, clicX, clicY);
-                if (tocado != -1) {
-                    nodoDestino = tocado;
-                    delete arbol;
-                    arbol = nullptr;
-                    if (nodoSeleccionado != -1) {
-                        arbol = dijkstra(g, nodoSeleccionado, nodoDestino);
+                if (algoritmo == 5 && mouseEvent->button == sf::Mouse::Button::Right) {
+                    int clicX = mouseEvent->position.x;
+                    int clicY = mouseEvent->position.y;
+                    int tocado = nodoTocado(g, clicX, clicY);
+                    if (tocado != -1) {
+                        nodoDestino = tocado;
+                        delete arbol;
+                        arbol = nullptr;
+                        if (nodoSeleccionado != -1) {
+                            arbol = dijkstra(g, nodoSeleccionado, nodoDestino);
+                        }
                     }
                 }
             }
@@ -223,30 +234,31 @@ int main() {
 
         for (int i = 0; i < g.getNumNodes(); i++) {
             sf::CircleShape circle(12);
-			if (i == nodoSeleccionado) {
+            circle.setOutlineThickness(1.5f);
+            circle.setOrigin({ 12, 12 });
+            circle.setPosition({ g.getX(i), g.getY(i) });
+
+            if (i == nodoSeleccionado) {
                 circle.setFillColor(sf::Color::Red);
                 circle.setOutlineColor(sf::Color::Red);
-                circle.setOutlineThickness(1.5f);
-                circle.setOrigin({ 12, 12 });
-                circle.setPosition({ g.getX(i), g.getY(i) });
-                window.draw(circle);
-			}
-			else if (i == nodoDestino) {
-				circle.setFillColor(sf::Color::Blue);
-				circle.setOutlineColor(sf::Color::Blue);
-				circle.setOutlineThickness(1.5f);
-				circle.setOrigin({ 12, 12 });
-				circle.setPosition({ g.getX(i), g.getY(i) });
-				window.draw(circle);
-			}
+            }
+            else if (i == nodoDestino) {
+                circle.setFillColor(sf::Color::Blue);
+                circle.setOutlineColor(sf::Color::Blue);
+            }
             else {
                 circle.setFillColor(sf::Color::White);
                 circle.setOutlineColor(sf::Color::Green);
-                circle.setOutlineThickness(1.5f);
-                circle.setOrigin({ 12, 12 });
-                circle.setPosition({ g.getX(i), g.getY(i) });
-                window.draw(circle);
             }
+            window.draw(circle);
+
+            sf::Text label(fuente, "N" + std::to_string(i), 10);
+            label.setFillColor(sf::Color::Black);
+            sf::FloatRect bounds = label.getLocalBounds();
+            label.setOrigin({ bounds.position.x + bounds.size.x / 2.f,
+                              bounds.position.y + bounds.size.y / 2.f });
+            label.setPosition({ g.getX(i), g.getY(i) });
+            window.draw(label);
         }
 
         window.draw(textoUI);
