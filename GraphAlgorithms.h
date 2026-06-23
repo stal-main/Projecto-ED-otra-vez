@@ -1,6 +1,6 @@
 #pragma once
 
-// Archivo: GraphAlgorithms.h
+//Archivo: GraphAlgorithms.h
 //Implementación de los algoritmos de búsqueda y árbol de
 //expansión sobre grafos.
 //Funcionalidades: DFS (pila), BFS (cola), Prim (MinHeap), Kruskal (Union-Find

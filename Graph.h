@@ -1,6 +1,6 @@
 #pragma once
 
-// Archivo: Graph.h
+//Archivo: Graph.h
 //Clase que representa un grafo no dirigido y etiquetado.
 //Funcionalidades: almacenamiento de nodos con posiciones 2D, aristas con
 //pesos (distancia geométrica), generación aleatoria del grafo, y
